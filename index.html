@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Conversor Excel a TXT - SICORE</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="header-content">
+                <h1>Excel a Sicore</h1>
+            </div>
+        </header>
+
+        <main>
+            <div class="upload-section">
+                <div class="upload-area" id="uploadArea">
+                    <div class="upload-content">
+                        <i class="fas fa-cloud-upload-alt upload-icon"></i>
+                        <h3>Cargar archivo Excel</h3>
+                        <p>Arrastra tu archivo aquí o haz clic para seleccionar</p>
+                        <input type="file" id="fileInput" accept=".xlsx,.xls" style="display: none;">
+                        <button class="upload-btn" onclick="document.getElementById('fileInput').click()">
+                            <i class="fas fa-folder-open"></i> Seleccionar archivo
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="file-info" id="fileInfo" style="display: none;">
+                <div class="file-details">
+                    <div class="file-name">
+                        <i class="fas fa-file-excel"></i>
+                        <span id="fileName"></span>
+                    </div>
+                    <div class="file-size" id="fileSize"></div>
+                </div>
+                <button class="remove-file" onclick="removeFile()">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+
+            <div class="info-section">
+                <div class="info-card">
+                    <div class="excel-preview">
+                        <div class="excel-header">
+                            <div class="excel-tab">📊 RETENCIONES DE GANANCIAS</div>
+                        </div>
+                        <div class="excel-content">
+                            <div class="excel-row header-row">
+                                <span>A</span><span>E</span><span>F</span><span>G</span><span>H</span><span>L</span>
+                            </div>
+                            <div class="excel-row">
+                                <span>FECHA</span><span>NUMERO</span><span>NETO</span><span>IVA</span><span>CUIT</span><span>RET</span>
+                            </div>
+                            <div class="excel-row data-row">
+                                <span>11/06/25</span><span>2967</span><span>96213</span><span>0.00</span><span>2011676</span><span>6642</span>
+                            </div>
+                            <div class="excel-row data-row">
+                                <span>17/06/25</span><span>2993</span><span>104040</span><span>9307</span><span>2024876</span><span>7549</span>
+                            </div>
+                        </div>
+                    </div>
+                    <h3>Carga tu Excel</h3>
+                    <p>Sube tu archivo Modelo con las retenciones de ganancias</p>
+                </div>
+                
+                <div class="info-arrow">
+                    <i class="fas fa-arrow-right"></i>
+                </div>
+                
+                <div class="info-card">
+                    <div class="info-icon">
+                        <i class="fas fa-cogs"></i>
+                    </div>
+                    <h3>Conversión Automática</h3>
+                    <p>El sistema procesa y formatea automáticamente</p>
+                </div>
+                
+                <div class="info-arrow">
+                    <i class="fas fa-arrow-right"></i>
+                </div>
+                
+                <div class="info-card">
+                    <div class="info-icon">
+                        <i class="fas fa-file-alt"></i>
+                    </div>
+                    <h3>Descarga TXT</h3>
+                    <p>Archivo listo para importar en SICORE</p>
+                </div>
+            </div>
+
+            <div class="process-section">
+                <button class="process-btn" id="processBtn" onclick="processFile()" disabled>
+                    Procesar archivo
+                </button>
+            </div>
+
+            <div class="progress-section" id="progressSection" style="display: none;">
+                <div class="progress-bar">
+                    <div class="progress-fill" id="progressFill"></div>
+                </div>
+                <p class="progress-text" id="progressText">Procesando archivo...</p>
+            </div>
+
+            <div class="result-section" id="resultSection" style="display: none;">
+                <div class="result-content">
+                    <div class="success-message">
+                        <i class="fas fa-check-circle"></i>
+                        <h3>¡Archivo procesado exitosamente!</h3>
+                        <p>Tu archivo TXT ha sido generado correctamente</p>
+                    </div>
+                    <div class="download-actions">
+                        <button class="download-btn" id="downloadBtn">
+                            <i class="fas fa-download"></i> Descargar TXT
+                        </button>
+                        <button class="preview-btn" onclick="previewFile()">
+                            <i class="fas fa-eye"></i> Vista previa
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="preview-modal" id="previewModal" style="display: none;">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h3>Vista previa del archivo TXT</h3>
+                        <button class="close-modal" onclick="closePreview()">
+                            <i class="fas fa-times"></i>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <pre id="previewContent"></pre>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="credits">
+                <p>@Pablo Fontana Programacion Artesanal</p>
+            </div>
+        </main>
+
+
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
